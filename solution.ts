@@ -10,7 +10,6 @@ const formatValue = (value: string | number | boolean) => {
 
 
 
-
 const getLength = (value: string | (string[] | number[])) => {
   if (typeof value === "string") {
     return value.length as number;
@@ -18,7 +17,6 @@ const getLength = (value: string | (string[] | number[])) => {
     return value.length as number;
   }
 };
-
 
 
 
@@ -30,10 +28,9 @@ class Person {
     this.age = age;
   }
   getDetails() {
-    return `Name: ${this.name}, Age: ${this.age}`;
+    return `'Name: ${this.name}, Age: ${this.age}'`;
   }
 }
-
 
 
 
@@ -48,7 +45,6 @@ const filterByRating = (
 
 
 
-
 const filterActiveUsers = (
   value: {
     id: number;
@@ -59,7 +55,6 @@ const filterActiveUsers = (
 ) => {
   return value.filter((item) => item["isActive"] === true);
 };
-
 
 
 
@@ -79,13 +74,12 @@ const printBookDetails = (book: Book) => {
 
 
 
-
 const getUniqueValues = (
   value1: number[] | string[],
   value2: number[] | string[]
 ) => {
   const result = [];
-  const checkDuplicate: Record<string | number, boolean> = {};
+  const checkDuplicate: { [key: string | number]: boolean } = {};
 
   for (let i = 0; i < value1.length; i++) {
     const item = value1[i];
@@ -109,7 +103,6 @@ const getUniqueValues = (
 
 
 
-
 const calculateTotalPrice = (
   value: {
     name: string;
@@ -124,8 +117,8 @@ const calculateTotalPrice = (
       ? subtotal * (1 - item.discount / 100)
       : subtotal;
 
-    return total + discountPrice;
-  },0);
+    return total + discountPrice >= 0 ? total + discountPrice : 0;
+  }, 0);
 
   return totalPrice as number;
 };
