@@ -40,7 +40,7 @@ const filterByRating = (
     rating: number;
   }[]
 ) => {
-  return value.filter((item) => item["rating"] >= 4);
+  return value.filter((item) => item["rating"] >= 4 && item["rating"] <= 5);
 };
 
 
@@ -114,7 +114,7 @@ const calculateTotalPrice = (
   const totalPrice = value.reduce((total, item) => {
     const subtotal = item.price * item.quantity;
     const discountPrice = item.discount
-      ? subtotal * (1 - item.discount / 100)
+      ? subtotal * (1 - item.discount / 100) >= 0 ? subtotal * (1 - item.discount / 100): 0
       : subtotal;
 
     return total + discountPrice >= 0 ? total + discountPrice : 0;
@@ -122,3 +122,4 @@ const calculateTotalPrice = (
 
   return totalPrice as number;
 };
+
